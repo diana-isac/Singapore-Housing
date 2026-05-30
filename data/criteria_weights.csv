@@ -1,0 +1,37 @@
+criterion_id,criterion_name,category,category_priority,is_hard_filter,hard_filter_outcome,max_points,total_category_pts,notes
+LF01,availability_for_target_dates,lease_fit,1,yes,eliminate_listing,ELIM,5,Must be available for target move-in window
+LF02,group_reservation_complexity,lease_fit,1,no,,5,5,Ease of booking as a couple or small group
+CO01,monthly_rent,cost,2,yes,eliminate_listing,ELIM,25,Must fall within absolute maximum budget ceiling
+CO02,rent_in_ideal_sgd_1350_1620_band,cost,2,no,,10,25,Bonus for landing in ideal SGD 13501620 all-in range
+CO03,deposit_burden,cost,2,no,,6,25,Lower upfront deposit = higher score
+CO04,utilities_included,cost,2,no,,5,25,Utilities bundled in rent = higher score
+CO05,hidden_fees_risk,cost,2,no,,4,25,No hidden or unclear fees = higher score
+LC01,commute_time_to_smu,location,3,yes,eliminate_listing,ELIM,20,Must fall within maximum acceptable commute time
+LC02,walkability_to_smu,location,3,no,,8,20,Prefer walkable or short public transport trip
+LC03,proximity_to_mrt,location,3,no,,6,20,Closer to MRT station = higher score
+LC04,neighborhood_fit,location,3,no,,6,20,Safety + amenities + overall vibe
+LA03,bed_size_for_two,living_arrangement,4,yes,eliminate_listing,ELIM,28,Bed must fit two people comfortably
+LA01,private_room_preference,living_arrangement,4,no,,6,28,Private room strongly preferred
+LA02,private_bathroom_preference,living_arrangement,4,no,,5,28,Private bathroom preferred
+LA04,quiet_study_suitability,living_arrangement,4,no,,5,28,Low noise; suitable for focused study
+LA05,number_of_housemates,living_arrangement,4,no,,4,28,Fewer housemates preferred
+LA06,student_community_fit,living_arrangement,4,no,,3,28,Student-friendly or peer-occupied flat
+LA07,guest_policy_fit,living_arrangement,4,no,,2,28,Flexible overnight guest policy
+LA08,living_with_landlord_peer_fit,living_arrangement,4,no,,2,28,Comfort level if landlord lives on-site
+LA09,mixed_gender_acceptance,living_arrangement,4,no,,1,28,Acceptance of mixed-gender household
+UQ01,air_conditioning,unit_quality,5,yes,eliminate_listing,ELIM,26,Room AC is non-negotiable
+UQ02,desk_in_room,unit_quality,5,yes,eliminate_listing,ELIM,26,Study desk must be in room or allowed
+UQ03,natural_light_and_window,unit_quality,5,yes,eliminate_listing,ELIM,26,Room must have window with natural light
+UQ04,laundry_access,unit_quality,5,yes,eliminate_listing,ELIM,26,In-building laundry access required
+UQ05,internet_quality,unit_quality,5,no,,7,26,Fast + reliable broadband; fibre preferred
+UQ06,cleanliness_and_maintenance,unit_quality,5,no,,7,26,Well-kept unit and common areas
+UQ07,furnishing_level,unit_quality,5,no,,6,26,Well-furnished including bed + storage + desk
+UQ08,kitchen_access,unit_quality,5,no,,4,26,Full kitchen access for cooking
+UQ09,fan_or_room_cooling_backup,unit_quality,5,no,,2,26,Backup fan or split-unit cooling if needed
+TR01,student_pass_acceptance,trust,6,yes,eliminate_listing,ELIM,10,Landlord must accept student pass as ID
+TR02,landlord_or_agent_verifiability,trust,6,yes,eliminate_listing,ELIM,10,Agent or landlord must be identifiable and verifiable
+TR03,proof_of_property_control,trust,6,yes,eliminate_listing,ELIM,10,Proof of right to rent must be obtainable
+TR04,source_trust_level,trust,6,yes,eliminate_listing,ELIM,10,Listing source must be a trusted platform
+TR05,listing_completeness,trust,6,no,,5,10,All key details provided in listing
+TR06,lease_clarity,trust,6,no,,5,10,Lease terms are clear and standard
+TR07,scam_risk_penalty,trust,6,no,,-15,10,Penalty deducted if scam risk signals detected

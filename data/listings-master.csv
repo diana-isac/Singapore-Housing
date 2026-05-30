@@ -1,2 +1,0 @@
-listing_id,source_name,source_status,url,date_found,address,neighborhood,housing_type,room_type,monthly_rent_sgd,deposit_sgd,utilities_included,availability_start,availability_end,commute_minutes_to_smu,mrt_access,landlord_or_agent,verification_status,scam_risk,raw_fit_notes,score_percent,decision
-sample_001,example_source,pending,https://example.com/listing/1,,,,,,,,,,,,,,unreviewed,unknown,,,pending

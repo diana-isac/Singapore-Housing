@@ -14,7 +14,7 @@
 - working SGD reference for scoring: approximately SGD 1,350-1,620 ideal, SGD 2,700 hard cap
 - pricing rule: evaluate using the actual 3-4 month stay period, not annualized pricing
 - utilities included required: preferred, but not mandatory
-- note: pricing above the ideal band should be penalized heavily unless the overall fit is exceptional
+- note: low price should be prioritized when quality remains good
 
 ## Housing Type
 
@@ -51,6 +51,7 @@
 - ideal commute: 5-10 minutes walking
 - hard max commute: 20 minutes by public transportation
 - preferred transport mode: walking first, then public transportation
+- ranking note: distance to SMU is currently the top priority, but there is flexibility within the acceptable range
 
 ## Location Preferences
 
@@ -67,8 +68,8 @@
 - co-living acceptable: yes, if legitimate and semester-friendly
 - max roommates: flexible, but not an unusually crowded setup
 - quiet/study priority: important
-- overnight guests: strongly preferred and practically important because boyfriend will visit for a couple weeks per month
-- strict guest policies: should be flagged negatively, but still shown if the option is otherwise strong
+- overnight guests: preferred, but do not penalize listings for silence on this point
+- strict guest policies: only penalize when there is an explicit restriction or clearly strict access control
 - group reservation requirement: not ideal
 
 ## Lease Preferences
@@ -107,3 +108,12 @@
 - bathroom shared only within the apartment
 - apartment-level laundry
 - two walls with windows or especially strong natural light
+
+## Current Priority Order
+
+1. distance to SMU
+2. AC in the room or at least strong AC availability in the apartment
+3. low price at good quality
+4. semester-fit legitimacy and student-pass compatibility
+5. room basics: private room, desk, window, bed bigger than a single
+6. guest-friendliness only when there is explicit evidence of restrictive rules

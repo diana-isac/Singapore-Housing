@@ -1,30 +1,41 @@
 # Singapore Housing Search
 
-This workspace is for finding short-term student housing in Singapore for the
-SMU study period from August 9, 2026 to December 6-10, 2026.
+This repo is the operating system for finding, verifying, scoring, and
+shortlisting Singapore housing for the SMU study period from August 9, 2026 to
+December 6-10, 2026.
 
-The goal is to produce a curated shortlist of safe, legitimate, affordable
-housing options that can be manually reviewed and then pursued with landlords
-or property managers.
+## Minimal Structure
 
-## Structure
+### Core Docs
 
-- `docs/`: project architecture, workflow, grading rules, scam prevention
-- `data/`: user requirements, source registry, listings database, shortlist
-- `templates/`: reusable review templates for listings and channels
-- `prompts/`: prompt scaffolds for future AI-assisted sourcing and evaluation
+- `docs/project-guide.md`: end-to-end workflow and project logic
+- `docs/scoring-system.md`: how the scoring files work
+- `docs/agent-guide.md`: how agents should execute bounded missions
+- `docs/smu-guidance.md`: distilled SMU housing rules and cautions
 
-## Workflow
+### Working Data
 
-1. Define user constraints and weighted criteria.
-2. Approve trustworthy sourcing channels.
-3. Search listings from approved channels only.
-4. Verify each listing for legitimacy and fit.
-5. Score listings using the shared rubric.
-6. Produce a shortlist above the agreed threshold.
-7. Manually review and contact landlords/agents.
+- `data/user-profile.template.md`: user requirements
+- `data/source-registry.csv`: source-level trust decisions
+- `data/criteria_weights.csv`: canonical criteria registry
+- `data/listings_scores.csv`: detailed scoring audit trail
+- `data/listings_score_summary.csv`: one-row-per-listing intake, dashboard, and shortlist surface
 
-## Current Status
+### References
 
-The architecture and templates are scaffolded. The next step is to fill in the
-user profile and finalize the scoring weights before sourcing live listings.
+- `references/smu_housing_list.pdf`
+- `references/smu_housing_list.txt`
+- `references/smu_accommodation_tips.pdf`
+- `references/smu_accommodation_tips.txt`
+
+### Templates
+
+- `templates/source-audit-template.md`
+- `templates/listing-evaluation-template.md`
+- `templates/outreach-template.md`
+
+## Current Research Boundary
+
+Only the 15 sources listed in `references/smu_housing_list.pdf` are in active
+scope until they are fully exhausted. Shortlist decisions should now be tracked
+directly in `data/listings_score_summary.csv`.
