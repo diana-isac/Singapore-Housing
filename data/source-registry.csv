@@ -1,2 +1,16 @@
 source_name,channel_type,url,operator,status,student_suitable,short_term_friendly,scam_risk,review_date,notes
-example_source,platform,https://example.com,unknown,pending,unknown,unknown,unknown,,Replace with real sources after review
+Balestier Students' Hostel,student_hostel,https://bshostel.com,Balestier Students' Hostel,pending,likely,unknown,unknown,,SMU PDF source; 30 minutes by bus; student hostel
+A Co-Living Hotel @ Veerasamy by The Assembly Place,coliving_operator,https://www.theassemblyplace.com/veerasamy-hotel/,The Assembly Place,pending,unknown,likely,unknown,,SMU PDF source; 22 minutes by MRT or bus
+Sophia View by The Assembly Place,coliving_operator,https://www.theassemblyplace.com/properties/sophia-view/,The Assembly Place,pending,unknown,likely,unknown,,SMU PDF source; 12 minutes walk to SMU area
+60 Wilkie,coliving_operator,https://www.theassemblyplace.com/properties/60-wilkie/,The Assembly Place,pending,unknown,likely,unknown,,SMU PDF source; 10 minutes walk to SMU area
+Keystone Farrer Park by Homestead,serviced_residence,https://www.thekeystone.biz/farrerpark,Keystone by Homestead,pending,unknown,likely,unknown,,SMU PDF source; 20 minutes by public transport
+CAMPUS by The Assembly Place,student_housing_operator,https://campusbytap.com/,The Assembly Place,pending,likely,unknown,unknown,,SMU PDF source; 40 minutes by public transport
+The Assembly Place,property_operator,https://www.theassemblyplace.com/find-a-home/,The Assembly Place,pending,unknown,likely,unknown,,SMU PDF umbrella source with various locations
+St Thomas Lodge,private_condominium,,unknown,pending,unknown,unknown,unknown,,SMU PDF source; 32 St Thomas Walk; no website listed in PDF
+Heritage Apartments,studio_apartments,https://hericoll.com/collections,Heritage Collection,pending,unknown,likely,unknown,,SMU PDF source covering City Hall Arab Street and Seah Street
+lyf,apartment_hotel,https://www.discoverasr.com/en/lyf,The Ascott Limited,pending,unknown,likely,unknown,,SMU PDF umbrella source covering Funan Farrer Park and Bugis
+Somerset-Bencoolen (Ascotts),apartment_hotel,https://www.discoverasr.com/en/somerset-serviced-residence/singapore/somerset-bencoolen-singapore,The Ascott Limited,pending,unknown,likely,unknown,,SMU PDF source; 4 minutes walk
+Citadines Singapore,apartment_hotel,https://www.discoverasr.com/en/citadines/singapore,The Ascott Limited,pending,unknown,likely,unknown,,SMU PDF umbrella source covering Raffles Place Rochor and Balestier
+Figment,shared_housing_operator,https://www.figment.live/rooms-studios-listing/,Figment,pending,unknown,likely,unknown,,SMU PDF source covering Chinatown Jalan Besar and Tanjong Pagar
+Novena Hall,student_hostel,https://www.novenahall.com.sg/,Novena Hall,pending,likely,unknown,unknown,,SMU PDF source; 25 minutes by bus or MRT; student hostel
+YMCA@One Orchard,student_residence,https://ymcaoneorchard.org.sg/,YMCA@One Orchard,pending,likely,unknown,unknown,,SMU PDF source; 5 minutes walk

@@ -15,10 +15,13 @@
 - housing type:
 - room type:
 - monthly rent:
+- total monthly all-in:
 - deposit:
 - utilities:
 - furnishings:
-- air conditioning:
+- air conditioning in room:
+- air conditioning in apartment:
+- fan in room:
 - internet:
 - available from:
 - available until:
@@ -36,6 +39,8 @@
 - viewing offered:
 - lease sample offered:
 - fee breakdown provided:
+- student pass accepted:
+- semester stay accepted:
 - inconsistencies found:
 
 ## Hard Filter Result

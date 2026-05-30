@@ -20,6 +20,8 @@ This is the project-specific digest of:
 - Review deposits, maintenance, inventory, and early termination carefully.
 - Always request payment proof.
 - Document property condition at move-in and move-out.
+- Apartment-level AC is operationally acceptable for this project; room AC is a
+  preference, not a hard requirement.
 
 ## Consumer / Complaint References
 

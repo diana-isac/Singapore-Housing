@@ -33,6 +33,7 @@
 
 - one row per listing
 - also serves as the row-per-listing intake surface
+- holds the core raw facts needed for extraction and comparison
 - category subtotals
 - total positive score
 - penalty totals

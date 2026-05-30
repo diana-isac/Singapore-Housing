@@ -19,7 +19,7 @@ LA06,student_community_fit,living_arrangement,4,no,,3,28,Student-friendly or pee
 LA07,guest_policy_fit,living_arrangement,4,no,,2,28,Flexible overnight guest policy
 LA08,living_with_landlord_peer_fit,living_arrangement,4,no,,2,28,Comfort level if landlord lives on-site
 LA09,mixed_gender_acceptance,living_arrangement,4,no,,1,28,Acceptance of mixed-gender household
-UQ01,air_conditioning,unit_quality,5,yes,eliminate_listing,ELIM,26,Room AC is non-negotiable
+UQ01,air_conditioning,unit_quality,5,yes,eliminate_listing,ELIM,26,AC must exist in the apartment; room AC is preferred but not required
 UQ02,desk_in_room,unit_quality,5,yes,eliminate_listing,ELIM,26,Study desk must be in room or allowed
 UQ03,natural_light_and_window,unit_quality,5,yes,eliminate_listing,ELIM,26,Room must have window with natural light
 UQ04,laundry_access,unit_quality,5,yes,eliminate_listing,ELIM,26,In-building laundry access required

@@ -15,7 +15,7 @@ December 6-10, 2026.
 
 ### Working Data
 
-- `data/user-profile.template.md`: user requirements
+- `data/user-profile.md`: user requirements
 - `data/source-registry.csv`: source-level trust decisions
 - `data/criteria_weights.csv`: canonical criteria registry
 - `data/listings_scores.csv`: detailed scoring audit trail

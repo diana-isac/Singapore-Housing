@@ -81,7 +81,7 @@ Current ranking priorities are:
 
 Detailed profile:
 
-- `data/user-profile.template.md`
+- `data/user-profile.md`
 
 ## Key Rules From SMU Guidance
 
@@ -107,6 +107,7 @@ Detailed notes:
 
 ### Active Data Files
 
+- `data/user-profile.md`
 - `data/criteria_weights.csv`
 - `data/source-registry.csv`
 - `data/listings_scores.csv`
