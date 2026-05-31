@@ -57,7 +57,8 @@ Audit the following sources for source-level trust and semester suitability:
 
 Scope:
 Only use these named sources from `references/smu_housing_list.pdf`.
-Do not expand beyond the 15 SMU PDF-listed sources.
+Do not expand beyond the current in-scope source set already approved by the
+user or listed in `data/source-registry.csv`.
 Do not extract listings yet.
 
 Method:
@@ -106,9 +107,17 @@ Method:
 Follow `docs/project-guide.md`.
 Capture only options plausibly relevant to the semester stay and user profile.
 Leave unknowns explicit.
+For every listing captured, store the exact deep link to that listing or room
+page in `listing_url_or_note`. Do not use a homepage, category page, or general
+operator page when a listing-specific URL exists.
+Identify the source currency shown for the listing and normalize all budget
+comparisons to SGD. Do not assume raw prices are SGD if the source uses USD or
+another currency.
 
 Deliverables:
 Update `data/listings_score_summary.csv` with one row per plausible listing.
+Ensure every captured listing row includes the exact listing URL whenever one
+exists.
 Return how many plausible options were found per source and what the main
 missing facts are.
 
@@ -149,6 +158,12 @@ Follow `docs/project-guide.md`, `docs/scoring-system.md`, and
 Check hard filters only: dates, price cap, commute cap, student-pass
 compatibility, semester-stay acceptance, private room, bed size, desk, natural
 light, apartment-level AC, laundry, and trust-critical items.
+Use the exact listing URL already stored in `data/listings_score_summary.csv`.
+If the row only has a homepage or generic URL, replace it with the exact
+listing-level URL before continuing when possible.
+Before evaluating the budget cap, verify the listing currency and convert the
+price to SGD. If currency is ambiguous, leave budget status unresolved rather
+than assuming SGD.
 
 Deliverables:
 Update `data/listings_scores.csv`.
@@ -193,6 +208,9 @@ Follow `docs/project-guide.md`, `docs/scoring-system.md`, and
 Verify exact price structure, deposits, utilities, bed, desk, AC, laundry,
 natural light, guest-policy evidence, lease clarity, operator identity, and
 property-control evidence.
+Work from the exact listing URL, not a homepage, whenever available.
+Verify the displayed currency and record comparison-ready amounts in SGD. Do
+not treat USD or other currencies as SGD.
 
 Deliverables:
 Update `data/listings_scores.csv` with evidence-backed notes where possible.
@@ -235,6 +253,7 @@ Follow `docs/project-guide.md`.
 Focus on usable floor space, desk presence, bed plausibility, windows, daylight,
 room feel, bathroom/kitchen condition, visible maintenance issues, and photo
 consistency.
+Use the exact listing URL already stored for the listing whenever available.
 
 Deliverables:
 Update supporting evidence notes in `data/listings_scores.csv` where relevant.
@@ -277,6 +296,11 @@ Follow `docs/scoring-system.md`.
 Use `data/criteria_weights.csv` as the source of truth.
 Do not invent facts.
 Apply penalties only when supported by evidence.
+If a listing lacks an exact listing URL in `data/listings_score_summary.csv`,
+flag that as an evidence-quality concern.
+Use only normalized SGD values for budget scoring and ideal-band scoring. If the
+listing currency is ambiguous or unverified, treat the cost score as unresolved
+instead of assuming SGD.
 
 Deliverables:
 Update `data/listings_scores.csv`.
@@ -317,6 +341,10 @@ Method:
 Follow `docs/project-guide.md` and `docs/scoring-system.md`.
 Prioritize fit, evidence quality, and low unresolved risk.
 Do not let a high raw score override weak trust.
+Use normalized SGD values for all price comparisons. If two listings are shown
+in different currencies, compare only after conversion to SGD. If a listing's
+currency remains ambiguous, flag it and prevent it from outranking clearly
+priced listings on cost.
 
 Deliverables:
 Update `data/listings_score_summary.csv` with final status notes if needed.
@@ -391,7 +419,8 @@ Stop once exhaustion status is clear.
 
 ## Hard Rules
 
-- do not expand beyond the 15 SMU PDF-listed sources until explicitly allowed
+- do not expand beyond the current user-approved source set until explicitly
+  allowed
 - do not invent missing facts
 - do not treat polished marketing as proof
 - do not let source trust substitute for listing trust

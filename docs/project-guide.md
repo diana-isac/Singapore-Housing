@@ -13,12 +13,14 @@ The end result is:
 
 ## Working Scope
 
-Current live research scope is restricted to the 15 sources listed in:
+Current live research scope is based on:
 
 - `references/smu_housing_list.pdf`
+- plus any additional sources explicitly approved by the user and entered into
+  `data/source-registry.csv`
 
-Do not expand beyond those 15 sources until they are fully exhausted and the
-user is explicitly informed.
+Do not expand beyond that set until it is fully exhausted and the user is
+explicitly informed.
 
 ## Core Workflow
 
@@ -62,6 +64,7 @@ Checks include:
 - semester-date compatibility
 - student-pass compatibility
 - exact pricing for the actual stay length
+- exact currency used and normalized SGD comparison value
 - deposit and fee clarity
 - room features
 - visual quality
@@ -95,6 +98,7 @@ Operational rules:
 - do not pay before a signed agreement
 - do not rely on verbal promises
 - clarify utilities explicitly
+- normalize non-SGD prices to SGD before any budget decision
 - prefer live or virtual tours over photos alone
 - document inventory, defects, and payment proof
 - review early termination, deposit return, and maintenance terms carefully
@@ -129,11 +133,11 @@ Detailed notes:
 
 ## Open Research Boundary
 
-Once all 15 PDF-listed sources are:
+Once all in-scope sources are:
 
 - audited
 - searched
 - and their plausible listings processed
 
-the agent must explicitly report that the source pack is exhausted before
-broader market expansion begins.
+the agent must explicitly report that the current source pack is exhausted
+before broader market expansion begins.

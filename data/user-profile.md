@@ -10,8 +10,8 @@
 ## Budget
 
 - ideal monthly rent: USD 1,000-1,200
-- hard max monthly rent: USD 2,000
-- working SGD reference for scoring: approximately SGD 1,350-1,620 ideal, SGD 2,700 hard cap
+- hard max monthly rent: SGD 2,000
+- working SGD reference for scoring: approximately SGD 1,350-1,620 ideal, SGD 2,000 hard cap
 - pricing rule: evaluate using the actual 3-4 month stay period, not annualized pricing
 - utilities included required: preferred, but not mandatory
 - note: low price should be prioritized when quality remains good

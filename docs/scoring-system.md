@@ -47,3 +47,18 @@
 3. High score does not override trust problems.
 4. Listing-level trust can still fail on a trusted source.
 5. Summary ranking must be traceable back to detailed rows.
+6. Budget comparisons must use normalized SGD values, not raw displayed values
+   in mixed currencies.
+
+## Currency Rule
+
+Before any budget check, scoring pass, or ranking comparison:
+
+- identify the displayed currency on the source page
+- do not assume a bare number is SGD unless the listing clearly indicates SGD
+- if the listing uses USD or another currency, convert it to SGD before storing
+  comparison values
+- store the normalized all-in amount in SGD in
+  `data/listings_score_summary.csv`
+- if currency is ambiguous, treat the amount as unresolved and do not mark the
+  listing as within budget yet

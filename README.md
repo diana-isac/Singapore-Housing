@@ -36,6 +36,7 @@ December 6-10, 2026.
 
 ## Current Research Boundary
 
-Only the 15 sources listed in `references/smu_housing_list.pdf` are in active
-scope until they are fully exhausted. Shortlist decisions should now be tracked
-directly in `data/listings_score_summary.csv`.
+Active scope includes the 15 sources listed in `references/smu_housing_list.pdf`
+plus any additional sources explicitly added by the user to
+`data/source-registry.csv`. Shortlist decisions should now be tracked directly
+in `data/listings_score_summary.csv`.
