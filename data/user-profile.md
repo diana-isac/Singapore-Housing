@@ -9,9 +9,12 @@
 
 ## Budget
 
-- ideal monthly rent: USD 1,000-1,200
-- hard max monthly rent: SGD 2,000
+- ideal monthly rent: approximately SGD 1,350-1,620, which is about USD 1,054.69-1,265.63 at the current project FX reference
+- hard max monthly rent: SGD 2,000, which is about USD 1,562.50 at the current project FX reference
+- original user framing: roughly USD 1,000-1,200 ideal, but the canonical scoring band is SGD 1,350-1,620
 - working SGD reference for scoring: approximately SGD 1,350-1,620 ideal, SGD 2,000 hard cap
+- working USD reference for human review: approximately USD 1,054.69-1,265.63 ideal, USD 1,562.50 hard cap
+- FX reference used for cross-file SGD/USD companion values: 1 SGD = 0.78125 USD as of 2026-06-02
 - pricing rule: evaluate using the actual 3-4 month stay period, not annualized pricing
 - utilities included required: preferred, but not mandatory
 - note: low price should be prioritized when quality remains good

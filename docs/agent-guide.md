@@ -14,6 +14,10 @@ run.
 Mission:
 [exact task]
 
+Session:
+session_id = [SESSION ID]
+batch_id = [BATCH ID]
+
 Scope:
 [what is in scope]
 [what is out of scope]
@@ -21,11 +25,20 @@ Scope:
 Method:
 Follow `docs/project-guide.md`, `docs/scoring-system.md`, and
 `docs/smu-guidance.md`.
+Use `docs/data-dictionary.md` for allowed field values.
 Use canonical project files only.
+Before editing any row, read its current lifecycle state and avoid writing
+backward over later-phase work.
+Every mission must preserve `session_id`, `batch_id`, `created_at`, and
+`updated_at` discipline in any file it edits.
+At the end of every mission, append a memory entry to the correct log:
+- `docs/agent-context-log.md` for durable research memory
+- `docs/ops-log.md` for repo/session mechanics
 
 Deliverables:
 [files to update]
 [summary to return]
+[memory log entry to append]
 
 Stop rule:
 [when to stop]
@@ -41,7 +54,7 @@ Goal:
 
 Primary file:
 
-- `data/source-registry.csv`
+- `data/source_registry.csv`
 
 Parallelization:
 
@@ -58,7 +71,7 @@ Audit the following sources for source-level trust and semester suitability:
 Scope:
 Only use these named sources from `references/smu_housing_list.pdf`.
 Do not expand beyond the current in-scope source set already approved by the
-user or listed in `data/source-registry.csv`.
+user or listed in `data/source_registry.csv`.
 Do not extract listings yet.
 
 Method:
@@ -68,13 +81,19 @@ Check operator identity, current activity, business model, complaint surface,
 semester-stay plausibility, and student-pass plausibility.
 
 Deliverables:
-Update `data/source-registry.csv`.
+Update `data/source_registry.csv`.
 Return a concise source-by-source summary with: approved / conditional /
 rejected, plus unresolved concerns.
+Append a durable memory entry to `docs/agent-context-log.md`.
 
 Stop rule:
 Stop after all listed sources are audited.
 ```
+
+Audit gate:
+
+- Run a Phase 1 audit using `docs/audit-guide.md` before any listed sources move
+  into Phase 2 extraction.
 
 ### Phase 2: Listing Extraction
 
@@ -84,7 +103,7 @@ Goal:
 
 Primary file:
 
-- `data/listings_score_summary.csv`
+- `data/listing_facts.csv`
 
 Parallelization:
 
@@ -107,23 +126,36 @@ Method:
 Follow `docs/project-guide.md`.
 Capture only options plausibly relevant to the semester stay and user profile.
 Leave unknowns explicit.
+Before editing, read the current `phase_state` for any existing listing rows and
+do not overwrite later-phase data with extraction-stage assumptions.
 For every listing captured, store the exact deep link to that listing or room
-page in `listing_url_or_note`. Do not use a homepage, category page, or general
+page in `exact_listing_url`. Do not use a homepage, category page, or general
 operator page when a listing-specific URL exists.
 Identify the source currency shown for the listing and normalize all budget
 comparisons to SGD. Do not assume raw prices are SGD if the source uses USD or
 another currency.
+Assign an explicit `session_id` and `batch_id` for every new row you add.
+Do not edit `data/listing_decisions.csv` or `data/listing_scores_long.csv`
+during extraction.
+Do not touch rows that already belong to later phases except to strengthen an
+exact listing URL or factual field without changing their decision state.
 
 Deliverables:
-Update `data/listings_score_summary.csv` with one row per plausible listing.
+Update `data/listing_facts.csv` with one row per plausible listing.
 Ensure every captured listing row includes the exact listing URL whenever one
-exists.
+exists and a `listing_url_quality` value.
 Return how many plausible options were found per source and what the main
 missing facts are.
+Append a durable memory entry to `docs/agent-context-log.md`.
 
 Stop rule:
 Stop after all plausible options from the named sources are logged.
 ```
+
+Audit gate:
+
+- Run a Phase 2 audit using `docs/audit-guide.md` before any extracted listings
+  move into hard-filter verification.
 
 ### Phase 3: Hard-Filter Verification
 
@@ -133,8 +165,9 @@ Goal:
 
 Primary files:
 
-- `data/listings_scores.csv`
-- `data/listings_score_summary.csv`
+- `data/listing_facts.csv`
+- `data/listing_scores_long.csv`
+- `data/listing_decisions.csv`
 
 Parallelization:
 
@@ -155,10 +188,12 @@ Do not score non-hard-filter criteria yet.
 Method:
 Follow `docs/project-guide.md`, `docs/scoring-system.md`, and
 `docs/smu-guidance.md`.
+Before editing, read the current `phase_state` and `hard_filter_status` for
+each listing and do not loosen an existing failure without stronger evidence.
 Check hard filters only: dates, price cap, commute cap, student-pass
 compatibility, semester-stay acceptance, private room, bed size, desk, natural
 light, apartment-level AC, laundry, and trust-critical items.
-Use the exact listing URL already stored in `data/listings_score_summary.csv`.
+Use the exact listing URL already stored in `data/listing_facts.csv`.
 If the row only has a homepage or generic URL, replace it with the exact
 listing-level URL before continuing when possible.
 Before evaluating the budget cap, verify the listing currency and convert the
@@ -166,14 +201,20 @@ price to SGD. If currency is ambiguous, leave budget status unresolved rather
 than assuming SGD.
 
 Deliverables:
-Update `data/listings_scores.csv`.
-Update top-level hard-filter status notes in `data/listings_score_summary.csv`
-if needed.
+Update `data/listing_scores_long.csv`.
+Update hard-filter state in `data/listing_decisions.csv`.
+Update `data/listing_facts.csv` only when factual fields become stronger.
 Return which listings passed, failed, or remain TBD.
+Append a durable memory entry to `docs/agent-context-log.md`.
 
 Stop rule:
 Stop after all listed IDs have hard-filter outcomes recorded.
 ```
+
+Audit gate:
+
+- Run a Phase 3 audit using `docs/audit-guide.md` before any listing moves into
+  full verification or scoring.
 
 ### Phase 4: Full Listing Verification
 
@@ -183,8 +224,9 @@ Goal:
 
 Primary files:
 
-- `data/listings_scores.csv`
-- `data/listings_score_summary.csv`
+- `data/listing_facts.csv`
+- `data/listing_scores_long.csv`
+- `data/listing_decisions.csv`
 
 Parallelization:
 
@@ -205,6 +247,8 @@ Do not rank yet.
 Method:
 Follow `docs/project-guide.md`, `docs/scoring-system.md`, and
 `docs/smu-guidance.md`.
+Before editing, read the current `phase_state` and preserve any existing
+hard-filter result unless stronger evidence supports a change.
 Verify exact price structure, deposits, utilities, bed, desk, AC, laundry,
 natural light, guest-policy evidence, lease clarity, operator identity, and
 property-control evidence.
@@ -213,14 +257,21 @@ Verify the displayed currency and record comparison-ready amounts in SGD. Do
 not treat USD or other currencies as SGD.
 
 Deliverables:
-Update `data/listings_scores.csv` with evidence-backed notes where possible.
-Update `data/listings_score_summary.csv` with key strengths, concerns, and next
+Update `data/listing_scores_long.csv` with evidence-backed notes where possible.
+Update `data/listing_facts.csv` when factual fields become stronger.
+Update `data/listing_decisions.csv` with key strengths, concerns, and next
 action if useful.
 Return a concise strengths / weaknesses / unknowns summary for each listing.
+Append a durable memory entry to `docs/agent-context-log.md`.
 
 Stop rule:
 Stop after all listed IDs have a full verification pass.
 ```
+
+Audit gate:
+
+- Run a Phase 4 audit using `docs/audit-guide.md` before any listing moves into
+  visual review, scoring, or ranking.
 
 ### Phase 5: Visual Review
 
@@ -230,8 +281,9 @@ Goal:
 
 Primary files:
 
-- `data/listings_scores.csv`
-- `data/listings_score_summary.csv`
+- `data/listing_facts.csv`
+- `data/listing_scores_long.csv`
+- `data/listing_decisions.csv`
 
 Parallelization:
 
@@ -250,20 +302,30 @@ Do not search new listings or sources.
 
 Method:
 Follow `docs/project-guide.md`.
+Before editing, read the current `phase_state` and keep visual notes additive.
 Focus on usable floor space, desk presence, bed plausibility, windows, daylight,
 room feel, bathroom/kitchen condition, visible maintenance issues, and photo
 consistency.
 Use the exact listing URL already stored for the listing whenever available.
 
 Deliverables:
-Update supporting evidence notes in `data/listings_scores.csv` where relevant.
-Update `data/listings_score_summary.csv` with concise visual strengths and
-concerns if useful.
+Update supporting evidence notes in `data/listing_scores_long.csv` where
+relevant.
+Update factual daylight / room-quality fields in `data/listing_facts.csv` when
+the images support it.
+Update `data/listing_decisions.csv` with concise visual strengths and concerns
+if useful.
 Return a visual assessment for each listing.
+Append a durable memory entry to `docs/agent-context-log.md`.
 
 Stop rule:
 Stop after all listed IDs have visual evidence notes.
 ```
+
+Audit gate:
+
+- Run a Phase 5 audit using `docs/audit-guide.md` before visual conclusions are
+  treated as scoring evidence.
 
 ### Phase 6: Scoring
 
@@ -273,8 +335,8 @@ Goal:
 
 Primary files:
 
-- `data/listings_scores.csv`
-- `data/listings_score_summary.csv`
+- `data/listing_scores_long.csv`
+- `data/listing_decisions.csv`
 
 Parallelization:
 
@@ -294,22 +356,34 @@ Do not search for new sources or new listings.
 Method:
 Follow `docs/scoring-system.md`.
 Use `data/criteria_weights.csv` as the source of truth.
+Before editing, read the current `current_phase_state`, `hard_filter_status`,
+and `rankable_status` in `data/listing_decisions.csv`.
 Do not invent facts.
 Apply penalties only when supported by evidence.
-If a listing lacks an exact listing URL in `data/listings_score_summary.csv`,
+If a listing lacks an exact listing URL in `data/listing_facts.csv`,
 flag that as an evidence-quality concern.
 Use only normalized SGD values for budget scoring and ideal-band scoring. If the
 listing currency is ambiguous or unverified, treat the cost score as unresolved
 instead of assuming SGD.
+If a listing remains `hard_filter_tbd` but is still worth manual review, score
+its non-hard-filter criteria provisionally for comparison and keep the listing
+status unchanged in `data/listing_decisions.csv`.
 
 Deliverables:
-Update `data/listings_scores.csv`.
-Update `data/listings_score_summary.csv`.
-Return a concise explanation of the major score drivers for each listing.
+Update `data/listing_scores_long.csv`.
+Update `data/listing_decisions.csv`.
+Return a concise explanation of the major score drivers for each listing and
+state when a score is provisional because hard filters remain unresolved.
+Append a durable memory entry to `docs/agent-context-log.md`.
 
 Stop rule:
 Stop after all listed IDs are scored and summarized.
 ```
+
+Audit gate:
+
+- Run a Phase 6 audit using `docs/audit-guide.md` before any scored listings
+  are used for ranking.
 
 ### Phase 7: Ranking
 
@@ -319,7 +393,7 @@ Goal:
 
 Primary file:
 
-- `data/listings_score_summary.csv`
+- `data/listing_decisions.csv`
 
 Parallelization:
 
@@ -334,11 +408,13 @@ Rank all currently scored and non-eliminated listings and identify the
 strongest candidates.
 
 Scope:
-Use only the listings already present in `data/listings_score_summary.csv`.
+Use only the listings already present in `data/listing_decisions.csv`.
 Do not search new sources or new listings.
 
 Method:
 Follow `docs/project-guide.md` and `docs/scoring-system.md`.
+Before editing, read the current `hard_filter_status` and `rankable_status` for
+every listing in scope.
 Prioritize fit, evidence quality, and low unresolved risk.
 Do not let a high raw score override weak trust.
 Use normalized SGD values for all price comparisons. If two listings are shown
@@ -347,12 +423,18 @@ currency remains ambiguous, flag it and prevent it from outranking clearly
 priced listings on cost.
 
 Deliverables:
-Update `data/listings_score_summary.csv` with final status notes if needed.
+Update `data/listing_decisions.csv` with ranking or shortlist notes if needed.
 Return a ranked summary with key tradeoffs, top candidates, and backup options.
+Append a durable memory entry to `docs/agent-context-log.md`.
 
 Stop rule:
 Stop once the current ranking summary is complete.
 ```
+
+Audit gate:
+
+- Run a Phase 7 audit using `docs/audit-guide.md` before any ranked shortlist is
+  treated as decision-ready.
 
 ### Phase 8: Exhaustion Check
 
@@ -362,8 +444,9 @@ Goal:
 
 Primary files:
 
-- `data/source-registry.csv`
-- `data/listings_score_summary.csv`
+- `data/source_registry.csv`
+- `data/listing_facts.csv`
+- `data/listing_decisions.csv`
 
 Parallelization:
 
@@ -388,10 +471,16 @@ every plausible listing was logged and processed.
 Deliverables:
 Return a direct yes/no answer and list exactly what remains unfinished, if
 anything.
+Append a durable memory entry to `docs/agent-context-log.md`.
 
 Stop rule:
 Stop once exhaustion status is clear.
 ```
+
+Audit gate:
+
+- Run a Phase 8 audit using `docs/audit-guide.md` before declaring the current
+  source pack exhausted.
 
 ## Parallel Orchestration Rules
 
@@ -409,6 +498,8 @@ Stop once exhaustion status is clear.
 - Phase 7 ranking split across many agents
 - changing the scoring schema mid-run
 - having multiple agents edit the same listing IDs at once
+- having one agent mutate `data/listing_facts.csv` for a batch while another
+  agent scores or ranks the same batch
 
 ## Compute Strategy
 
@@ -424,3 +515,6 @@ Stop once exhaustion status is clear.
 - do not invent missing facts
 - do not treat polished marketing as proof
 - do not let source trust substitute for listing trust
+- do not use session-separated CSVs or fake header rows inside a dataset;
+  delimit sessions with metadata columns instead
+- do not finish a mission without logging memory in the appropriate log file
